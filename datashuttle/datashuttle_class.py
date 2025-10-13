@@ -959,7 +959,7 @@ class DataShuttle:
     ) -> None:
         """Try to encrypt the rclone config file.
 
-        If it fails, warn the user the config file is unencrypted.
+        If it fails, error and let the user the config file is unencrypted.
         """
         try:
             self.encrypt_rclone_config()
@@ -1184,6 +1184,7 @@ class DataShuttle:
 
     @check_configs_set
     def get_rclone_central_config_path(self) -> Path:
+        """Get the path to the Rclone config for the current `connection_method`."""
         return rclone.get_rclone_config_filepath(self.cfg)
 
     @check_configs_set
