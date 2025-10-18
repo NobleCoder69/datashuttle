@@ -336,7 +336,7 @@ class TransferData:
 
         level = "ses" if ses else "sub"
 
-        for datatype_key, datatype_folder in datatype_items:  # type: ignore
+        for datatype_key, datatype_folder in datatype_items:
             if datatype_folder.level == level:
                 if ses:
                     filepath = Path(sub) / ses / datatype_folder.name

@@ -516,7 +516,7 @@ def get_local_and_central_file_differences(
     parsed_output = {val: [] for val in convert_symbols.values()}
 
     for top_level_folder in top_level_folders_to_check:
-        rclone_output = perform_rclone_check(cfg, top_level_folder)  # type: ignore
+        rclone_output = perform_rclone_check(cfg, top_level_folder)
         split_rclone_output = rclone_output.split("\n")
 
         for result in split_rclone_output:

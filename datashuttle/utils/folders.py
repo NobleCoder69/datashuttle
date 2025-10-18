@@ -164,7 +164,7 @@ def make_datatype_folders(
     """
     datatype_items = cfg.get_datatype_as_dict_items(datatype)
 
-    for datatype_key, datatype_folder in datatype_items:  # type: ignore
+    for datatype_key, datatype_folder in datatype_items:
         if datatype_folder.level == level:
             datatype_name = datatype_folder.name
 

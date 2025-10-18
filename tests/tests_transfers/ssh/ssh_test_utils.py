@@ -41,7 +41,7 @@ def setup_ssh_connection(project, setup_ssh_key_pair=True):
     builtins.input = lambda _: "y"  # type: ignore
 
     orig_get_secret = copy.deepcopy(utils.get_connection_secret_from_user)
-    utils.get_connection_secret_from_user = lambda *args, **kwargs: "password"  # type: ignore
+    utils.get_connection_secret_from_user = lambda *args, **kwargs: "password"
 
     orig_isatty = copy.deepcopy(sys.stdin.isatty)
     sys.stdin.isatty = lambda: True
