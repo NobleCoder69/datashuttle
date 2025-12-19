@@ -20,7 +20,7 @@ def setup_project_for_gdrive(project: DataShuttle):
     # Check if required environment variables are set
     if not has_gdrive_environment_variables():
         pytest.skip("Google Drive set up environment variables must be set.")
-    
+
     random_string = utils.get_random_string()
 
     project.update_config_file(
@@ -44,7 +44,7 @@ def setup_gdrive_connection(project: DataShuttle):
     # Check if required environment variables are set
     if not has_gdrive_environment_variables():
         pytest.skip("Google Drive set up environment variables must be set.")
-    
+
     state = {"first": True}
 
     def mock_input(_: str) -> str:
@@ -77,4 +77,9 @@ def has_gdrive_environment_variables():
     ]:
         if key not in os.environ:
             return False
+
+        # On CI triggered by forked repositories, secrets are empty
+        if os.environ[key].strip() == "":
+            return False
+
     return True
