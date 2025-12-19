@@ -2,6 +2,8 @@ import builtins
 import copy
 import os
 
+import pytest
+
 from datashuttle import DataShuttle
 from datashuttle.utils import gdrive, utils
 
@@ -15,6 +17,10 @@ def setup_project_for_gdrive(project: DataShuttle):
     central path so that the test project paths do not interfere while
     running multiple test instances simultaneously in CI.
     """
+    # Check if required environment variables are set
+    if not has_gdrive_environment_variables():
+        pytest.skip("Google Drive environment variables not set")
+    
     random_string = utils.get_random_string()
 
     project.update_config_file(
@@ -35,6 +41,10 @@ def setup_gdrive_connection(project: DataShuttle):
     connection without a browser. The credentials are set in the environment
     by the CI. To run tests locally, the developer must set them themselves.
     """
+    # Check if required environment variables are set
+    if not has_gdrive_environment_variables():
+        pytest.skip("Google Drive environment variables not set")
+    
     state = {"first": True}
 
     def mock_input(_: str) -> str:
